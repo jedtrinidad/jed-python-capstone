@@ -2,7 +2,7 @@ import os
 import json
 import logging
 import requests
-import uuid
+from datetime import datetime
 
 import boto3
 from botocore.exceptions import ClientError
@@ -43,8 +43,15 @@ def publish_sns_message(topic_arn, message):
 
 
 def save_to_ddb(log_event):
-    # TODO: implementation
-    return log_event
+    ddb = boto3.resource('dynamodb')
+    api_table = ddb.Table('application_logs_jed')
+    keys = {
+        'log_level': log_event['log_level'],
+        'timestamp': str(datetime.now())
+    }
+    log_event.update(keys)
+    api_table.put_item(Item=log_event)
+    return api_table.get_item(Key=keys)['Item']
 
 
 def send_critical_email(log_event):
@@ -83,6 +90,7 @@ def process_log_events(log_event):
             'statusCode': 400,
             'message': "Invalid Log Level"
         }
+    save_to_ddb(log_event)
     return {
         'statusCode': 200,
         'logEvent': log_event
