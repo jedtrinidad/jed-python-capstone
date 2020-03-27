@@ -1,0 +1,23 @@
+{
+    "table_name": "products",
+    "pk": [
+        {
+            "AttributeName": "category",
+            "KeyType": "HASH"
+        },
+        {
+            "AttributeName": "sku",
+            "KeyType": "RANGE"
+        }
+    ],
+    "pkdef": [
+        {
+            "AttributeName": "category",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "sku",
+            "AttributeType": "S"
+        }
+    ]
+}
