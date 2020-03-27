@@ -5,7 +5,6 @@ import requests
 from datetime import datetime
 
 import boto3
-from botocore.exceptions import ClientError
 
 
 logging.basicConfig(
@@ -70,19 +69,19 @@ def send_critical_email(log_event):
 
 def process_log_events(log_event):
     if log_event['log_level'] == 'INFO':
-        message = json.dumps({'default' : json.dumps(log_event)})
+        message = json.dumps({'default': json.dumps(log_event)})
         publish_sns_message(info_arn, message)
     elif log_event['log_level'] == 'DEBUG':
-        message = json.dumps({'default' : json.dumps(log_event)})
+        message = json.dumps({'default': json.dumps(log_event)})
         publish_sns_message(debug_arn, message)
     elif log_event['log_level'] == 'WARNING':
-        message = json.dumps({'default' : json.dumps(log_event)})
+        message = json.dumps({'default': json.dumps(log_event)})
         publish_sns_message(warning_arn, message)
     elif log_event['log_level'] == 'ERROR':
-        message = json.dumps({'default' : json.dumps(log_event)})
+        message = json.dumps({'default': json.dumps(log_event)})
         publish_sns_message(error_arn, message)
     elif log_event['log_level'] == 'CRITICAL':
-        message = json.dumps({'default' : json.dumps(log_event)})
+        message = json.dumps({'default': json.dumps(log_event)})
         publish_sns_message(critical_arn, message)
         send_critical_email(log_event)
     else:
@@ -95,4 +94,3 @@ def process_log_events(log_event):
         'statusCode': 200,
         'logEvent': log_event
     }
-

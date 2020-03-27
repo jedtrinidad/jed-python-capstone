@@ -10,11 +10,13 @@ logging.basicConfig(
     format='[%(asctime)s] %(levelname)s %(module)s %(lineno)d - %(message)s'
     )
 
+
 log = logging.getLogger(__name__)
 log_url = 'https://3tdgwj7eog.execute-api.ap-southeast-1.amazonaws.com/beta/logs'
 client = LogginatorClient()
 client.set_url(log_url)
 log.addHandler(client)
+
 
 parser = argparse.ArgumentParser(
     description='Download a csv file and parse it'
