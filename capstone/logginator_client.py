@@ -25,5 +25,5 @@ class LogginatorClient(logging.StreamHandler):
         requests.post(
             self.url,
             json.dumps(log_event),
-            header={'Content-Type': 'application/json'}
+            headers={'Content-Type': 'application/json'}
         )

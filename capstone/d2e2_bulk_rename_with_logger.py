@@ -14,7 +14,9 @@ logging.basicConfig(
 
 
 logger = logging.getLogger(__name__)
-log_url = 'https://3tdgwj7eog.execute-api.ap-southeast-1.amazonaws.com/beta/logs'
+log_url = '''
+https://3tdgwj7eog.execute-api.ap-southeast-1.amazonaws.com/beta/logs
+'''
 client = LogginatorClient(log_url)
 client.set_url(log_url)
 logger.addHandler(client)
@@ -26,8 +28,7 @@ parser = argparse.ArgumentParser(
     )
 parser.add_argument(
     'new_name',
-    help=
-    """
+    help="""
     Files matching 'file pattern' will be changed to this value.
     An incrementing count will also be added.
     """
