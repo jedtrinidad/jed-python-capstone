@@ -15,6 +15,7 @@ Logs are stored in a DynamoDB table. The primary key consists of `log_level` and
 ## Code Sample
 
 To add `LogginatorClient` to a script.
+
     import logging
     from logginator_client import LogginatorClient
 
