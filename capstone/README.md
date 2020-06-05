@@ -15,22 +15,22 @@ Logs are stored in a DynamoDB table. The primary key consists of `log_level` and
 ## Code Sample
 
 To add `LogginatorClient` to a script.
-`
-import logging
 
-from logginator_client import LogginatorClient
+    import logging
+    from logginator_client import LogginatorClient
+
 # Configure Logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='[%(asctime)s] %(levelname)s %(module)s %(lineno)d - %(message)s'
-    )
+    logging.basicConfig(
+        level=logging.INFO,
+        format='[%(asctime)s] %(levelname)s %(module)s %(lineno)d - %(message)s'
+        )
 
 
-log = logging.getLogger(__name__)
-log_url = '''
-https://3tdgwj7eog.execute-api.ap-southeast-1.amazonaws.com/beta/logs
-'''
-client = LogginatorClient()
-client.set_url(log_url)
-log.addHandler(client)`
-`
+    log = logging.getLogger(__name__)
+    log_url = '''
+    https://3tdgwj7eog.execute-api.ap-southeast-1.amazonaws.com/beta/logs
+    '''
+    client = LogginatorClient()
+    client.set_url(log_url)
+    log.addHandler(client)
+
